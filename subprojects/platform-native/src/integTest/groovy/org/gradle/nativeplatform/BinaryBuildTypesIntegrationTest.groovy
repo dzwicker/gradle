@@ -17,6 +17,8 @@ package org.gradle.nativeplatform
 
 import org.gradle.nativeplatform.fixtures.AbstractInstalledToolChainIntegrationSpec
 import org.gradle.nativeplatform.fixtures.NativePlatformsTestFixture
+import org.gradle.nativeplatform.fixtures.RequiresInstalledToolChain
+import org.gradle.nativeplatform.fixtures.ToolChainRequirement
 import org.gradle.nativeplatform.fixtures.app.CppHelloWorldApp
 import org.gradle.test.fixtures.file.LeaksFileHandles
 import org.gradle.util.Requires
@@ -26,6 +28,7 @@ class BinaryBuildTypesIntegrationTest extends AbstractInstalledToolChainIntegrat
     def helloWorldApp = new CppHelloWorldApp()
 
     @LeaksFileHandles("can't delete build/binaries/mainExecutable/integration")
+    @RequiresInstalledToolChain(ToolChainRequirement.GccCompatible)
     def "creates debug and release variants"() {
         when:
         helloWorldApp.writeSources(file("src/main"))

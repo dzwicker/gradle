@@ -482,6 +482,7 @@ abstract class AbstractNativeLanguageIncrementalBuildIntegrationTest extends Abs
     }
 
     @RequiresInstalledToolChain(VisualCpp)
+    @Ignore
     def "cleans up stale debug files when changing from debug to non-debug"() {
 
         given:
