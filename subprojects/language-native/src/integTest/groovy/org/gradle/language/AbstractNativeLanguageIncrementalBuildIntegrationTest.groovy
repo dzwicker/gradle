@@ -482,14 +482,13 @@ abstract class AbstractNativeLanguageIncrementalBuildIntegrationTest extends Abs
     }
 
     @RequiresInstalledToolChain(VisualCpp)
-    @Ignore
     def "cleans up stale debug files when changing from debug to non-debug"() {
 
         given:
         buildFile << """
             model {
                 binaries {
-                    all { ${compilerTool}.args '/Zi'; linker.args '/DEBUG'; }
+                    all { ${compilerTool}.args '/Zi', '/FS'; linker.args '/DEBUG'; }
                 }
             }
         """
